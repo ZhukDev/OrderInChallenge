@@ -11,7 +11,6 @@ namespace OrderInChallenge.Api
         {
             var host = CreateHostBuilder(args).Build();
 
-            //TODO: Investigate how to bulk upsert
             using (var scope = host.Services.CreateScope())
             {
                 var dbInitializer = scope.ServiceProvider.GetRequiredService<IDbInitializer>();

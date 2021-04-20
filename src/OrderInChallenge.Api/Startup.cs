@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MongoDB.Bson.Serialization.Conventions;
 using MongoDB.Driver;
+using OrderInChallenge.Commands.Order.Create;
 using OrderInChallenge.DataAccess;
 using OrderInChallenge.DataAccess.Abstractions;
 using OrderInChallenge.DataAccess.Seeder;
@@ -31,12 +32,14 @@ namespace OrderInChallenge.Api
         {
             services.AddMediatR(typeof(SearchRestaurantsQuery));
             services.AddMediatR(typeof(GetAllRestaurantsQuery));
+            services.AddMediatR(typeof(CreateOrderCommand));
 
             services.AddControllersWithViews();
             ConventionRegistry.Register("Camel Case", new ConventionPack { new CamelCaseElementNameConvention() }, _ => true);
             services.AddSingleton<IMongoClient>(s => new MongoClient(Configuration.GetConnectionString("MongoDb")));
-            services.AddScoped(s => new AppDbContext(s.GetRequiredService<IMongoClient>(), Configuration["DbName"]));
+            services.AddSingleton(s => new AppDbContext(s.GetRequiredService<IMongoClient>(), Configuration["DbName"]));
             services.AddTransient<IRestaurantsService, RestaurantsService>();
+            services.AddTransient<IOrdersService, OrdersService>();
             services.AddTransient<IDbInitializer, DbInitializer>();
 
             // In production, the React files will be served from this directory

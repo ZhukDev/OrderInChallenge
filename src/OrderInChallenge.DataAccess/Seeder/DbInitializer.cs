@@ -39,7 +39,8 @@ namespace OrderInChallenge.DataAccess.Seeder
         public async Task InitializeAsync(CancellationToken cancellationToken = default)
         {
             this.logger.LogInformation("Seeding from {file}", this.filePath);
-            if(this.appDbContext.Restaurants.EstimatedDocumentCount() == 0)
+            //TODO: Investigate how to bulk insert
+            if (this.appDbContext.Restaurants.EstimatedDocumentCount() == 0)
             {
                 await this.appDbContext.Restaurants.InsertManyAsync(_resturantsList, cancellationToken: cancellationToken);
             }

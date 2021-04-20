@@ -25,17 +25,18 @@ namespace OrderInChallenge.Queries.Restaurants.Search
             //filter menuItems results and ordered by menuItems count and then by rank(desc)
             var restaurants = _restaurantsService
                                 .GetResturantsByKey(food, location)
-                                    .Select(r => new RestaurantViewModel(r) { 
+                                    .Select(r => new RestaurantViewModel(r)
+                                    {
                                         Categories = r.Categories.Select(c => new CategoryViewModel(c)
-                                            {
-                                                MenuItems =  c.MenuItems
-                                                                    .Where(mi => (food.Equals(location) 
+                                        {
+                                            MenuItems = c.MenuItems
+                                                                    .Where(mi => (food.Equals(location)
                                                                                     && (r.City.ToLower().Contains(location)
                                                                                         || r.Suburb.ToLower().Contains(location)
                                                                                         )
                                                                                     ) || mi.Name.ToLower().Contains(food))
                                                                     .Select(mi => new MenuItemViewModel(mi)).ToList()
-                                            }).Where(c => c.MenuItems.Any()).ToList()
+                                        }).Where(c => c.MenuItems.Any()).ToList()
                                     }).OrderByDescending(r => r.Categories.SelectMany(c => c.MenuItems).Count()).ThenByDescending(r => r.Rank);
 
             return Task.FromResult<IEnumerable<RestaurantViewModel>>(restaurants);

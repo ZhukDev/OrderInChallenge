@@ -1,7 +1,7 @@
-﻿using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using OrderInChallenge.Commands.Order.Create;
+using System.Threading.Tasks;
 
 namespace OrderInChallenge.Api.Controllers
 {

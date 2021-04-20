@@ -10,16 +10,16 @@ namespace OrderInChallenge.Queries.Restaurants.GetAll
 {
     public class GetAllRestaurantsQueryHandler : IRequestHandler<GetAllRestaurantsQuery, IEnumerable<RestaurantViewModel>>
     {
-        private readonly IRestaurantsService restaurantsService;
+        private readonly IRestaurantsService _restaurantsService;
 
         public GetAllRestaurantsQueryHandler(IRestaurantsService restaurantsService)
         {
-            this.restaurantsService = restaurantsService;
+            _restaurantsService = restaurantsService;
         }
 
         public Task<IEnumerable<RestaurantViewModel>> Handle(GetAllRestaurantsQuery request, CancellationToken cancellationToken)
         {
-            var restaurants = restaurantsService.GetAllResturants().Select(r => new RestaurantViewModel(r));
+            var restaurants = _restaurantsService.GetAllResturants().Select(r => new RestaurantViewModel(r));
 
             return Task.FromResult(restaurants);
         }

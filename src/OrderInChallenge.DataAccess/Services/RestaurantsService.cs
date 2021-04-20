@@ -1,9 +1,7 @@
-﻿using MongoDB.Bson;
-using MongoDB.Driver;
+﻿using MongoDB.Driver;
 using OrderInChallenge.DataAccess.Abstractions;
 using OrderInChallenge.DataAccess.Entities;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 
 namespace OrderInChallenge.DataAccess.Services
@@ -37,11 +35,11 @@ namespace OrderInChallenge.DataAccess.Services
             {
                 result = _db.Restaurants.AsQueryable().Where(r => (r.City.ToLower().Contains(locationKey)
                                                                     || r.Suburb.ToLower().Contains(locationKey))
-                                                                    && ( r.Categories.Any(c => c.Name.ToLower().Contains(foodKey))
+                                                                    && (r.Categories.Any(c => c.Name.ToLower().Contains(foodKey))
                                                                     || r.Categories.Any(c => c.MenuItems.Any(mi => mi.Name.ToLower().Contains(foodKey))))
                                                             ).ToList();
             }
-            
+
             return result;
         }
     }

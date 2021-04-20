@@ -15,5 +15,7 @@ namespace OrderInChallenge.DataAccess
         public IMongoCollection<Restaurant> Restaurants => _db.GetCollection<Restaurant>(nameof(Restaurants));
         public IMongoCollection<Category> Categories => _db.GetCollection<Category>(nameof(Categories));
         public IMongoCollection<MenuItem> MenuItems => _db.GetCollection<MenuItem>(nameof(MenuItems));
+        public IMongoCollection<Order> Orders => _db.GetCollection<Order>(nameof(Orders));
+        public IMongoCollection<OrderItem> OrderItems => _db.GetCollection<OrderItem>(nameof(OrderItems));
     }
 }

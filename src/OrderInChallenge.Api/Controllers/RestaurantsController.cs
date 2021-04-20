@@ -1,8 +1,8 @@
-﻿using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using OrderInChallenge.Queries.Restaurants.GetAll;
 using OrderInChallenge.Queries.Restaurants.Search;
+using System.Threading.Tasks;
 
 namespace OrderInChallenge.Api.Controllers
 {
@@ -33,7 +33,7 @@ namespace OrderInChallenge.Api.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("{searchKey}")]
-        public async Task<IActionResult> GetAllResturants([FromRoute] string searchKey)
+        public async Task<IActionResult> GetResturantsByKey([FromRoute] string searchKey)
         {
             var query = new SearchRestaurantsQuery
             {

@@ -45,10 +45,9 @@ service.interceptors.response.use(
     error => {
         console.log('err' + (error?.response?.data || error)); // for debug
         toast({
-            type: 'warning',
-            icon: 'envelope',
+            type: 'error',
             title: 'Error',
-            description:  error?.response?.data?.Message || error?.response?.data || error,
+            description:  error?.response?.data?.Message || error?.response?.data || error?.message || error,
             time: 5000
         });
         return Promise.reject(error);

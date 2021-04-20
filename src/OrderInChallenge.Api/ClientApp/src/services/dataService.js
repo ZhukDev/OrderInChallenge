@@ -14,6 +14,14 @@ const dataService = {
             method: 'get'
         });
     },
+
+    async CreateOrder(data) {
+        return request({
+            url: '/api/orders',
+            method: 'post',
+            data
+        });
+    },
 }
 
 export default dataService;
