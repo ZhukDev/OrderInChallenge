@@ -9,6 +9,8 @@ RUN apt-get update -yq && apt-get upgrade -yq && apt-get install -yq curl git na
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - && apt-get install -yq nodejs build-essential
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
+RUN apt-get update -yq && apt-get upgrade -yq && apt-get install -yq curl git nano
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - && apt-get install -yq nodejs build-essential
 WORKDIR /src
 COPY ["src/OrderInChallenge.Api/OrderInChallenge.Api.csproj", "src/OrderInChallenge.Api/"]
 COPY ["src/OrderInChallenge.Commands/OrderInChallenge.Commands.csproj", "src/OrderInChallenge.Commands/"]
