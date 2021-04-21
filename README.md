@@ -11,11 +11,8 @@ Web project to solve Taco challenge.
 
 ```bash
 # Go into the folder with solution and run:
-docker-compose up
+dotnet run
 ```
-Service will be available on port 8888.
-
-When docker runs open http://localhost:8888.
 
 ## Test
 ```bash
