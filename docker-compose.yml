@@ -1,0 +1,13 @@
+version: '3.7'
+
+services:
+  api:
+    image: orderinchallenge.api
+    container_name: orderinchallenge.api
+    depends_on:
+      - db
+    build:
+      context: .
+      dockerfile: src/OrderInChallenge.Api/Dockerfile
+  db:
+    image: mongo
